@@ -42,6 +42,14 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
 
       priceDisplay.receivedPrice shouldBe "$1.10"
     }
+
+    "displays an error if price lookup fails with exception" in {
+      priceLookup.priceForBarcode _ when aBarcode throws new RuntimeException("ouch")
+
+      pos.onBarcode(aBarcode)
+
+      priceDisplay.receivedPrice shouldBe "An error occurred looking up the price for the barcode requested"
+    }
   }
 }
 
