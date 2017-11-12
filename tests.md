@@ -20,3 +20,4 @@
 - It can fail for other mysterious reasons and throw an exception.
 - Lookups are done synchronously.
 - The display cannot fail, and if it does, the error is handled somewhere else.
+- The display formats the message sent automatically. If a message is too long it's displayed in multiple parts.
