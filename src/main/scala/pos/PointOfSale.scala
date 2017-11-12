@@ -15,7 +15,7 @@ class PointOfSale(priceDisplay: Display, priceLookup: PriceLookup) {
       val price = priceLookup.priceForBarcode(barcode)
       priceDisplay.render("$%.2f".format(price))
     } catch {
-      case _: PriceNotFoundException => priceDisplay.render("No item was found for the the barcode requested")
+      case _: PriceNotFoundException => priceDisplay.render("No item was found for the barcode requested")
       case _: Exception => priceDisplay.render("An error occurred looking up the price for the barcode requested")
     }
   }

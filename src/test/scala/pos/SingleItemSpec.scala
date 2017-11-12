@@ -32,7 +32,7 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
 
       pos.onBarcode(aBarcode)
 
-      priceDisplay.receivedPrice shouldBe "No item was found for the the barcode requested"
+      priceDisplay.receivedPrice shouldBe "No item was found for the barcode requested"
     }
 
     "formats the price of items to always have 2 decimal digits" in {
