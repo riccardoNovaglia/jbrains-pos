@@ -27,9 +27,10 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
       priceDisplay.receivedPrice shouldBe "Barcode read was empty"
     }
 
-    // need to introduce some form of mocks. Will complete after previous tests pass with mock
-    "displays an error message if the price looked up is not found" ignore {
-      pos.onBarcode("non existing product")
+    "displays an error message if the price looked up is not found" in {
+      priceLookup.priceForBarcode _ when aBarcode throws new PriceNotFoundException(aBarcode)
+
+      pos.onBarcode(aBarcode)
 
       priceDisplay.receivedPrice shouldBe "No item was found for the the barcode requested"
     }

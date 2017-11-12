@@ -6,8 +6,12 @@ class PointOfSale(priceDisplay: Display, priceLookup: PriceLookup) {
     if (barcode.isEmpty) {
       priceDisplay.render("Barcode read was empty")
     } else {
-      val price = priceLookup.priceForBarcode(barcode)
-      priceDisplay.render("$" + price)
+      try {
+        val price = priceLookup.priceForBarcode(barcode)
+        priceDisplay.render("$" + price)
+      } catch {
+        case _: Exception => priceDisplay.render("No item was found for the the barcode requested")
+      }
     }
   }
 
