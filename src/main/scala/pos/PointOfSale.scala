@@ -1,12 +1,13 @@
 package pos
 
-class PointOfSale(priceDisplay: Display) {
+class PointOfSale(priceDisplay: Display, priceLookup: PriceLookup) {
 
-  def onBarcode(str: String): Unit = {
-    if (str.isEmpty) {
+  def onBarcode(barcode: String): Unit = {
+    if (barcode.isEmpty) {
       priceDisplay.render("Barcode read was empty")
     } else {
-      priceDisplay.render("$1")
+      val price = priceLookup.priceForBarcode(barcode)
+      priceDisplay.render("$" + price)
     }
   }
 
