@@ -4,11 +4,11 @@
 
 ~~Barcode is empty~~
 
-Looking up the barcode raises an error
+~~Looking up the barcode raises an error~~
 
-Item price for barcode is not found
+~~Item price for barcode is not found~~
 
-Price format needs adjusting
+~~Price format needs adjusting~~
 
 
 ### Assumptions and observations
