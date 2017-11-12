@@ -14,6 +14,12 @@ class SingleItemSpec extends FreeSpec with Matchers {
 
       priceDisplay.receivedPrice shouldBe "$1"
     }
+
+    "displays an error message if the barcode received is empty" in {
+      pos.onBarcode("")
+
+      priceDisplay.receivedPrice shouldBe "Barcode read was empty"
+    }
   }
 }
 
