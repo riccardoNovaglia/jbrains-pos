@@ -13,7 +13,7 @@ class PointOfSale(priceDisplay: Display, priceLookup: PriceLookup) {
   private def lookupAndDisplayPrice(barcode: String): Unit = {
     try {
       val price = priceLookup.priceForBarcode(barcode)
-      priceDisplay.render("$" + price)
+      priceDisplay.render("$%.2f".format(price))
     } catch {
       case _: Exception => priceDisplay.render("No item was found for the the barcode requested")
     }

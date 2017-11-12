@@ -18,7 +18,7 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
 
       pos.onBarcode(aBarcode)
 
-      priceDisplay.receivedPrice shouldBe "$1.0"
+      priceDisplay.receivedPrice shouldBe "$1.00"
     }
 
     "displays an error message if the barcode received is empty" in {
@@ -35,13 +35,13 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
       priceDisplay.receivedPrice shouldBe "No item was found for the the barcode requested"
     }
 
-    "formats the price of items to always have 2 decimal digits" in { pendingUntilFixed {
-      priceLookup.priceForBarcode _ when aBarcode returns 1.00f
+    "formats the price of items to always have 2 decimal digits" in {
+      priceLookup.priceForBarcode _ when aBarcode returns 1.1f
 
       pos.onBarcode(aBarcode)
 
-      priceDisplay.receivedPrice shouldBe "$1.00"
-    }}
+      priceDisplay.receivedPrice shouldBe "$1.10"
+    }
   }
 }
 
