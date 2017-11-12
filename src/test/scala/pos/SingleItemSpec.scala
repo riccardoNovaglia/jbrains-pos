@@ -10,14 +10,15 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
   val priceLookup: PriceLookup  = stub[PriceLookup]
   val pos: PointOfSale          = new PointOfSale(priceDisplay, priceLookup)
 
+  val aBarcode = "barcode\n"
+
   "The POS system" - {
     "displays the price of a single item, given a barcode" in {
-      val aBarcode = "abcde\n"
       priceLookup.priceForBarcode _ when aBarcode returns 1.00f
 
       pos.onBarcode(aBarcode)
 
-      priceDisplay.receivedPrice shouldBe "$1.0" // TODO: update price format to always have 2 decimal digits.
+      priceDisplay.receivedPrice shouldBe "$1.0"
     }
 
     "displays an error message if the barcode received is empty" in {
@@ -32,6 +33,14 @@ class SingleItemSpec extends FreeSpec with Matchers with MockFactory {
 
       priceDisplay.receivedPrice shouldBe "No item was found for the the barcode requested"
     }
+
+    "formats the price of items to always have 2 decimal digits" in { pendingUntilFixed {
+      priceLookup.priceForBarcode _ when aBarcode returns 1.00f
+
+      pos.onBarcode(aBarcode)
+
+      priceDisplay.receivedPrice shouldBe "$1.00"
+    }}
   }
 }
 
