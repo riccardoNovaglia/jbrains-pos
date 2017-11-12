@@ -2,7 +2,7 @@
 
 ~~Happy path: get a barcode and display some price~~
 
-Barcode is empty
+~~Barcode is empty~~
 
 Looking up the barcode raises an error
 
